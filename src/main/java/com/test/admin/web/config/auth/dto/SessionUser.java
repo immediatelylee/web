@@ -1,9 +1,11 @@
 package com.test.admin.web.config.auth.dto;
 
 import com.test.admin.web.domain.user.User;
+import lombok.Getter;
 
 import java.io.Serializable;
 
+@Getter
 public class SessionUser implements Serializable {
     private String name;
     private String email;

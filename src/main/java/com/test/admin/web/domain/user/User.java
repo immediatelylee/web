@@ -25,7 +25,7 @@ public class User extends BaseTimeEntity {
     @Column
     private String picture;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) //    (1)
     @Column(nullable = false)
     private Role role;   // Role을 따로생성할것임
 
