@@ -1,11 +1,10 @@
 package com.test.admin.web.controller;
 
+import com.test.admin.web.config.auth.LoginUser;
 import com.test.admin.web.config.auth.dto.SessionUser;
-import com.test.admin.web.domain.user.User;
 import com.test.admin.web.dto.PostsResponseDto;
 import com.test.admin.web.service.PostsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +17,15 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession; // (0) 추가부분
+    private final HttpSession httpSession;
 
-    @GetMapping("/")
-    public String index(Model model) {
+    @GetMapping("/") // (0) 추가부분 @LoginUser
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        // 삭제했음 SessionUser user 부분
         if (user != null) {
             model.addAttribute("userName", user.getName());
-        }
+        } //(1)
         return "index";
     }
     @GetMapping("/posts/save")
