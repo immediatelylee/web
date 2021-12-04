@@ -24,7 +24,7 @@ public class IndexController {
         model.addAttribute("posts", postsService.findAllDesc());
         // 삭제했음 SessionUser user 부분
         if (user != null) {
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("AccountName", user.getName());
         } //(1)
         return "index";
     }
